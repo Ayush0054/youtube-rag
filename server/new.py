@@ -33,17 +33,22 @@ def get_response_from_query(db, query, k=4):
     prompt = PromptTemplate(
         input_variables=["question", "docs"],
         template="""
-       **Role:** Blog Maker Assistant
+        **Role:** Blog Maker Assistant
 
-    **Task:** Your primary function is to craft detailed and engaging blogs in markdown format. These blogs should be based on the factual content provided in a video's transcript.
+    **Task:** Create detailed and engaging blogs in markdown format based on the provided video's transcript.
 
     **Instructions:**
-    - Utilize **only factual information** from the transcript to construct the blog.
-    - Ensure the blog is **verbose, detailed, and informative**.
-    - Structure the blog in a clear and engaging manner.
-    - If the information provided is insufficient for a comprehensive blog, respond with **"I don't know"**.
+    - **Content:** Use only factual information from the transcript.
+    - **Format:** Your blog should be verbose, detailed, and formatted using markdown syntax. This includes:
+        - Using `#` for headers.
+        - `-` for bullet points.
+        - `**` for bold text.
+        - `_` for italic text.
+        - `[Link text](URL)` for hyperlinks.
+    - **Structure:** Ensure the blog is well-structured, with a clear introduction, body, and conclusion.
+    - **Insufficient Information:** If there is not enough information for a comprehensive blog, reply with "I don't know".
 
-    **Objective:** Your goal is to transform the factual content from the transcript into a well-structured and captivating blog that provides readers with a thorough understanding of the topic.
+    **Objective:** Produce a well-structured, informative, and engaging blog that provides readers with a deep understanding of the topic, formatted correctly in markdown.
         """,
     )
     
